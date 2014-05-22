@@ -46,7 +46,7 @@ public class TasksActivity extends ActionBarActivity {
         setTitle("Your tasks, Sir");
 
         //  Add code to fetch tasks connected to your logged in user here.
-        
+
 
     }
 
