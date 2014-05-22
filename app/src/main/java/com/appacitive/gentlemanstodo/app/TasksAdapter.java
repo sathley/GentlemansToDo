@@ -48,17 +48,7 @@ public class TasksAdapter extends ArrayAdapter<AppacitiveObject> {
                 int position = (Integer) view.getTag();
                 //  Add task delete code here.
                 AppacitiveObject task = getItem(position);
-                task.deleteInBackground(true, new Callback<Void>() {
-                    @Override
-                    public void success(Void result) {
-                        Toast.makeText(mContext, "Task removed", Toast.LENGTH_SHORT).show();
-                    }
 
-                    @Override
-                    public void failure(Void result, Exception e) {
-                        Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
                 remove(task);
                 notifyDataSetChanged();
             }
@@ -71,22 +61,7 @@ public class TasksAdapter extends ArrayAdapter<AppacitiveObject> {
 
                 //  Add task update code here.
                 AppacitiveObject task = getItem(position);
-                task.setBoolProperty("completed", isChecked);
 
-                task.updateInBackground(false, new Callback<AppacitiveObject>() {
-                    @Override
-                    public void success(AppacitiveObject result) {
-                        if (isChecked)
-                            Toast.makeText(mContext, "Task done", Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(mContext, "Task undone", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void failure(AppacitiveObject result, Exception e) {
-                        Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         });
         return myView;

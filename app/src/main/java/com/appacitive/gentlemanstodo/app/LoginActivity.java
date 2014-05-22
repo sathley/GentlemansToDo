@@ -51,20 +51,7 @@ public class LoginActivity extends ActionBarActivity {
                 String passwordString = password.getText().toString();
 
                 //  Add user login code here
-                AppacitiveUser.loginInBackground(emailAddress, passwordString, -1, -1, new Callback<AppacitiveUser>() {
-                    @Override
-                    public void success(AppacitiveUser user) {
-                        Intent tasksIntent = new Intent(context, TasksActivity.class);
-                        tasksIntent.putExtra("user_id", user.getId());
-                        tasksIntent.putExtra("firstname", user.getFirstName());
-                        startActivity(tasksIntent);
-                    }
 
-                    @Override
-                    public void failure(AppacitiveUser user, Exception e) {
-                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
             }
         });
 

@@ -42,27 +42,7 @@ public class SignupActivity extends ActionBarActivity {
                 String passwordString = password.getText().toString();
 
                 //  Add user signup code here
-                AppacitiveUser user = new AppacitiveUser();
-                user.setFirstName(firstName);
-                user.setEmail(emailAddress);
-                user.setPassword(passwordString);
-                user.setUsername(emailAddress);
 
-                user.signupInBackground(new Callback<AppacitiveUser>() {
-                    @Override
-                    public void success(AppacitiveUser user) {
-
-                        Intent tasksIntent = new Intent(context, TasksActivity.class);
-                        tasksIntent.putExtra("user_id", user.getId());
-                        tasksIntent.putExtra("firstname", user.getFirstName());
-                        startActivity(tasksIntent);
-                    }
-
-                    @Override
-                    public void failure(AppacitiveUser user, Exception e) {
-                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
             }
         });
     }

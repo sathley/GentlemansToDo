@@ -46,23 +46,7 @@ public class TasksActivity extends ActionBarActivity {
         setTitle("Your tasks, Sir");
 
         //  Add code to fetch tasks connected to your logged in user here.
-        AppacitiveObject.getConnectedObjectsInBackground("owner", "user", mUserId, null, null, new Callback<ConnectedObjectsResponse>() {
-            @Override
-            public void success(ConnectedObjectsResponse result) {
-                List<AppacitiveObject> tasks = new ArrayList<AppacitiveObject>();
-                for (ConnectedObject connectedObject : result.results) {
-                    tasks.add(connectedObject.object);
-                }
-                mAdapter = new TasksAdapter(mContext, R.layout.item_tasks, tasks);
-                setupHeader();
-                mListView.setAdapter(mAdapter);
-            }
-
-            @Override
-            public void failure(ConnectedObjectsResponse result, Exception e) {
-                Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        
 
     }
 
@@ -88,26 +72,7 @@ public class TasksActivity extends ActionBarActivity {
             mNewTaskName.setText("");
 
             //  Adding a new task and connecting it to the logged in user.
-            AppacitiveObject task = new AppacitiveObject("todo");
-            task.setStringProperty("title", newTaskName.trim());
-            task.setBoolProperty("completed", false);
 
-            new AppacitiveConnection("owner")
-                    .toExistingObject("user", mUserId)
-                    .fromNewObject("todo", task)
-                    .createInBackground(new Callback<AppacitiveConnection>() {
-                        @Override
-                        public void success(AppacitiveConnection result) {
-                            Toast.makeText(mContext, "New task added", Toast.LENGTH_LONG).show();
-                            mAdapter.add((AppacitiveObject) result.endpointA.object);
-                            mAdapter.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void failure(AppacitiveConnection result, Exception e) {
-                            Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
         }
     }
 }
