@@ -46,11 +46,9 @@ public class TasksAdapter extends ArrayAdapter<AppacitiveObject> {
             @Override
             public void onClick(View view) {
                 int position = (Integer) view.getTag();
-                //  Add task delete code here.
-                AppacitiveObject task = getItem(position);
 
-                remove(task);
-                notifyDataSetChanged();
+                //  Add task delete code here.
+
             }
         });
 
@@ -60,7 +58,7 @@ public class TasksAdapter extends ArrayAdapter<AppacitiveObject> {
                 int position = (Integer) compoundButton.getTag();
 
                 //  Add task update code here.
-                AppacitiveObject task = getItem(position);
+
 
             }
         });
